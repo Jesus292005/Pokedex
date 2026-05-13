@@ -1,0 +1,11 @@
+.app {
+  margin: 30px;
+}
+
+.pokemon-list {
+  padding: 6px;
+  margin: 20px;
+  font-size: 14px;
+  line-height: 1.0;
+}
+
