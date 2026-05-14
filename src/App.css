@@ -1,11 +1,137 @@
-.app {
-  margin: 30px;
+body {
+  margin: 0;
+  padding: 0;
+  font-family: system-ui, -apple-system, sans-serif;
+  background-color: #f4f6f8;
+}
+
+.home h1 {
+  background-color: rgb(3, 30, 82);
+  color: #ffffff;
+  margin: 0;
+  padding: 20px;
+  font-size: 40px;
+  text-align: center;
+}
+
+.home h3 {
+  text-align: center;
+  color: #333;
+  margin-top: 20px;
 }
 
 .pokemon-list {
-  padding: 6px;
-  margin: 20px;
-  font-size: 14px;
-  line-height: 1.0;
+  padding: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
+/* Estilos para los elementos de la lista de Pokémon */
+
+.pokemon-item {
+  background-color: rgba(60, 122, 166, 0.223);
+  border: 1px solid #837aff9d;
+  border-radius: 12px;
+  padding: 20px;
+  width: 180px;
+  text-align: center;
+  box-sizing: border-box;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.pokemon-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 15px rgba(3, 30, 82, 0.15);
+}
+
+.card-header {
+  margin-bottom: 10px;
+}
+
+.pokemon-id {
+  color: #888;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.pokemon-item h3 {
+  margin: 5px 0 15px 0;
+  font-size: 16px;
+  color: #333;
+}
+
+.type-badge {
+  display: inline-block;
+  background-color: rgba(183, 176, 253, 0.3);
+  color: rgb(3, 30, 82);
+  border-radius: 12px;
+  padding: 4px 10px;
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+
+
+/* Página de Detalle del Pokémon */
+
+.pokemon-detail-page {
+  max-width: 500px;
+  margin: 40px auto;
+  padding: 30px;
+  background-color: white;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+.pokemon-detail-page a {
+  display: inline-block;
+  margin-bottom: 20px;
+  color: rgb(3, 30, 82);
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.pokemon-detail-page a:hover {
+  text-decoration: underline;
+}
+
+.detail-header h1 {
+  margin: 0;
+  color: #333;
+}
+
+.detail-info {
+  text-align: left;
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 12px;
+  margin-top: 20px;
+}
+
+.detail-info p {
+  margin: 10px 0;
+}
+
+.stats-section ul, 
+.detail-info ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 10px 0;
+}
+
+.stats-section li {
+  background-color: #eef1f6;
+  margin: 5px 0;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 14px;
+  display: flex;
+  justify-content: space-between;
+}
