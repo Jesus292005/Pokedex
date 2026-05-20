@@ -2,10 +2,14 @@ import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { getPokemonDetails } from '../services/pokemon.service';
 import type { Pokemon } from '../types/pokemon.interface';
+import { useFavorites } from '../hooks/useFavorites';
 
 export const PokemonDetailPage = () => {
     const { name } = useParams<{ name: string }>();
     const [pokemon, setPokemon] = useState<Pokemon | null>(null);
+    const [loading, setLoading] = useState<boolean>(true);
+    const [error, setError] = useState<string | null>(null);
+    const { isFavorite, toggleFavorite } = useFavorites(name || '');
 
     useEffect(() => {
         const fetchPokemon = async () => {
@@ -13,20 +17,33 @@ export const PokemonDetailPage = () => {
             try {
             const data = await getPokemonDetails(name);
             setPokemon(data);
+            setLoading(false);
             }
             catch (error) {
             console.error('Error fetching Pokémon details:', error);
+            setError('Error al cargar los detalles del Pokémon');
+            setLoading(false);
             }
         };
         fetchPokemon();
     }, [name]);
 
+    if (loading) return <div>Cargando detalles de {name}...</div>;
+    if (error || !pokemon) return <div>Error al cargar el Pokémon. <Link to="/">Volver</Link></div>;
+
     return (
     <div className="pokemon-detail-page">
       <Link to="/">← Volver al listado</Link>
       
-      <div className="detail-header">
-        <h1>{pokemon?.name?.toUpperCase()} #{pokemon?.id}</h1>
+      <div className="detail-header" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '15px' }}>
+        <h1>{pokemon.name.toUpperCase()} #{pokemon.id}</h1>
+        <button 
+          onClick={toggleFavorite} 
+          style={{ background: 'none', border: 'none', fontSize: '32px', cursor: 'pointer' }}
+          title={isFavorite ? "Quitar de favoritos" : "Agregar a favoritos"}
+        >
+          {isFavorite ? '❤️' : '🤍'}
+        </button>
       </div>
 
       <img 

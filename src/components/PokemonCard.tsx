@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { getPokemonDetails } from "../services/pokemon.service";
 import  type { Pokemon } from "../types/pokemon.interface";
+import { useFavorites } from "../hooks/useFavorites";
 
 interface PokemonCardProps {
     name: string;
@@ -9,9 +10,10 @@ interface PokemonCardProps {
 
 export const PokemonCard = ({ name }: PokemonCardProps) => {
     const [pokemon, setPokemon] = useState<Pokemon | null>(null);
+    const { isFavorite, toggleFavorite } = useFavorites(name);
 
     useEffect(() => {
-        const fetchPokemonDetails = async () => {
+        const fetchDetails = async () => {
             try {
                 const data = await getPokemonDetails(name);
                 setPokemon(data);
@@ -19,16 +21,22 @@ export const PokemonCard = ({ name }: PokemonCardProps) => {
                 console.error('Error al obtener los detalles del Pokémon:');
             }
         };
-        fetchPokemonDetails();
+        fetchDetails();
     }, [name]);
 
-    if (!pokemon) {
-        return <div>Cargando...</div>;
-    }
+    if (!pokemon) return <div className="pokemon-item loading">Cargando {name}...</div>;
 
     return (
         <Link to={`/pokemon/${pokemon.name}`} style={{ textDecoration: 'none', color: 'inherit' }}>
-            <div className="pokemon-item card">
+            <div className="pokemon-item card" style={{ position: 'relative' }}>
+
+                <button onClick={toggleFavorite} style={{ position: 'absolute', top: '10px', right: '10px', background: 'none', border: 'none', fontSize: '24px', cursor: 'pointer', zIndex: 10 
+                    }}
+                    title={isFavorite ? "Quitar de favoritos" : "Agregar a favoritos"}
+                    >
+                    {isFavorite ? '❤️' : '🤍'}
+                </button>
+
                 <div className="card-header">
                     <span className="pokemon-id">#{pokemon.id}</span>
                     <h3>{pokemon.name.toUpperCase()}</h3>
@@ -43,7 +51,7 @@ export const PokemonCard = ({ name }: PokemonCardProps) => {
                 <div className="pokemon-types">
                     {pokemon.types.map((t) => (
                         <span key={t.type.name} className="type-badge" style={{ marginRight: '5px' }}>
-                        {t.type.name}
+                            {t.type.name}
                         </span>
                     ))}
                 </div>
