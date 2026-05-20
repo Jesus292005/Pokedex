@@ -45,11 +45,6 @@ export const Home = () => {
         fetchTypes();
     },[offset, isSearching, setShowFavorites]);
 
-    // useEffect(() => {
-    //     if (!isSearching && !showFavorites) {
-    //         fetchPaginationPokemons();
-    //     }
-    // }, [offset, isSearching, setShowFavorites]);
 
     const handleSearch = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -146,7 +141,7 @@ export const Home = () => {
                     </button>
 
                     <select value={selectedType} onChange={handleTypeChange} style={{ padding: '10px', borderRadius: '8px', border: '1px solid #ccc', textTransform: 'capitalize' }}>
-                        <option value="">Todos los tipos</option>
+                        <option value="">Todos</option>
                         {types.map((t) => (
                         t.name !== 'unknown' && t.name !== 'stellar' && (
                             <option key={t.name} value={t.name}>
