@@ -42,7 +42,7 @@ export const PokemonDetailPage = () => {
           style={{ background: 'none', border: 'none', fontSize: '32px', cursor: 'pointer' }}
           title={isFavorite ? "Quitar de favoritos" : "Agregar a favoritos"}
         >
-          {isFavorite ? '❤️' : '🤍'}
+          {isFavorite ? '💙' : '🤍'}
         </button>
       </div>
 

@@ -34,7 +34,7 @@ export const PokemonCard = ({ name }: PokemonCardProps) => {
                     }}
                     title={isFavorite ? "Quitar de favoritos" : "Agregar a favoritos"}
                     >
-                    {isFavorite ? '❤️' : '🤍'}
+                    {isFavorite ? '💙' : '🤍'}
                 </button>
 
                 <div className="card-header">
