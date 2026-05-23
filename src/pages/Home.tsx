@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { getPokemonList, getPokemonDetails, getPokemonTypes, getPokemonsByType } from '../services/pokemon.service';
 import { PokemonCard } from '../components/PokemonCard';
 import type { PokemonListItem } from '../types/pokemon.interface';
+import { Link } from 'react-router-dom';
 
 export const Home = () => {
 
@@ -158,9 +159,17 @@ export const Home = () => {
                     )}
                 </form>
 
-                <button onClick={toggleFavoritesView} style={{ padding: '10px 20px', marginTop: '20px', marginBottom: '20px', borderRadius: '8px', border: '1px solid #000000', backgroundColor: showFavorites ? '#ae0101' : '#ae0101', color: showFavorites ? 'white' : '#ffffff', cursor: 'pointer', fontWeight: 'bold'}}> 
-                    {showFavorites ? '← Volver al listado' : 'Ver Favoritos'}
+                <button onClick={toggleFavoritesView} style={{ padding: '10px 20px', marginTop: '20px', marginBottom: '20px', borderRadius: '8px', border: '1px solid #000000', backgroundColor: '#ae0101', color: 'white', cursor: 'pointer', fontWeight: 'bold', display: 'flex', alignItems: 'center', transition: 'all 0.2s ease'}}> 
+                    {showFavorites ? ' Volver al listado' : 'Ver Favoritos'}
                 </button>
+                
+                <Link 
+                    to="/compare"
+                    style={{ padding: '10px 20px', borderRadius: '8px', marginTop: '20px', marginBottom: '20px', border: '1px solid #000000', backgroundColor: '#f39c12', color: 'white', cursor: 'pointer', fontWeight: 'bold', textDecoration: 'none',display: 'flex', alignItems: 'center', transition: 'all 0.2s ease'
+                    }}
+                    >
+                        Comparador de Pokemones
+                </Link>
 
             </div>
 
